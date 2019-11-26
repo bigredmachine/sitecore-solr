@@ -35,3 +35,5 @@ Please use/extend at your own risk.
 | 204414 | Search Log is flooded with WARN messages when there are more than one typeMatch with the same "type" attribute | See 285907 | See 285907|
 | 195567 | Solr Search Provider uses search index to determine field type during indexing | See 285907 | See 285907|
 | 285903 | OnPublishEndAsynchronousSingleInstanceStrategy which overrides Run() method and initializes LimitedConcurrencyLevelTaskSchedulerForIndexing singleton with incorrect MaxThreadLimit value | See 285907 | See 285907, fix for just [285903 available on github](https://github.com/SitecoreSupport/Sitecore.Support.285903)|
+| 314454 | Sitecore doesn't startup when Solr Down. | 1) If you have enough indexes, the timeout on initialisation from each index run in sequence can result in Sitecore not being starting up in the allowed time. 2) Retry logic for SolrCloud aliases. 3) Retry logic for initialising Indexes 4) Exception handling in IsOnline index check. 5) Initialisation of indexes to not be interupted if Solr is unavailable, to initialise what can and retry later. | Included in hotfix 323662-1 built specifically for Sitecore 9.0 update 2. |
+
