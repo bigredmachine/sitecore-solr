@@ -10,8 +10,10 @@ using Sitecore.ContentSearch;
 using Sitecore.ContentSearch.Diagnostics;
 using Sitecore.ContentSearch.Linq;
 using Sitecore.ContentSearch.Linq.Common;
+using Sitecore.ContentSearch.Linq.Factories;
 using Sitecore.ContentSearch.Linq.Methods;
 using Sitecore.ContentSearch.Linq.Nodes;
+using Sitecore.ContentSearch.Linq.Parsing;
 using Sitecore.ContentSearch.Linq.Solr;
 using Sitecore.ContentSearch.SolrProvider.Logging;
 using Sitecore.ContentSearch.Utilities;
@@ -49,7 +51,19 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
         private readonly SolrLoggingSerializer _solrLoggingSerializer;
 
         public LinqToSolrIndexDoNotSwallowError(SolrSearchContextDoNotSwallowError context, IExecutionContext[] executionContexts)
-            : base(context, executionContexts)
+            : base(context,
+                executionContexts,
+                (IQueryOptimizer)new SolrQueryOptimizer(),
+                (QueryMapper<SolrCompositeQuery>)new SolrQueryMapper(
+                    new SolrIndexParameters((IIndexValueFormatter)context.Index.Configuration.IndexFieldStorageValueFormatter,
+                    (IFieldQueryTranslatorMap<IFieldQueryTranslator>)context.Index.Configuration.VirtualFields,
+                    (FieldNameTranslator)context.Index.FieldNameTranslator, executionContexts,
+                    (IFieldMapReaders)context.Index.Configuration.FieldMap, context.ConvertQueryDatesToUtc)
+                ),
+                (IIndexValueFormatter)context.Index.Configuration.IndexFieldStorageValueFormatter,
+                (IQueryableFactory)new DefaultQueryableFactory(),
+                (IExpressionParser)new ExpressionParser(typeof(TItem), typeof(TItem),
+                (FieldNameTranslator)context.Index.FieldNameTranslator))
         {
             _context = context;
             _contentSearchSettings = context.Index.Locator.GetInstance<IContentSearchConfigurationSettings>();

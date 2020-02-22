@@ -14,11 +14,11 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
     {
         public SolrLocator() : base()
         {
-            //Override SolrFactory
-            SolrFactory = new SolrFactory<T>(this, SolrContentSearchManager.SolrSettings);
+            ////Override SolrFactory
+            //SolrFactory = new SolrFactory<T>(this, SolrContentSearchManager.SolrSettings);
 
             //For each index create a circuit breaker, and add to service locator
-            foreach(var index in SolrContentSearchManager.Indexes)
+            foreach (var index in SolrContentSearchManager.Indexes)
             {
                 var transientHandler = CreateCircuitBreakerForCore(index.Name);
                 this.AddTransientHandler(transientHandler, index.Name);

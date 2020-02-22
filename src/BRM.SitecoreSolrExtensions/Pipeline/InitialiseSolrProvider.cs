@@ -1,5 +1,4 @@
 ﻿using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
-using Sitecore.ContentSearch.SolrProvider;
 using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
 using Sitecore.Pipelines;
 
@@ -9,11 +8,6 @@ namespace BRM.Indexing.SitecoreSolrExtensions.Pipeline
     {
         public void Process(PipelineArgs args)
         {
-            if (!SolrContentSearchManager.IsEnabled)
-            {
-                return;
-            }
-
             if (IntegrationHelper.IsSolrConfigured())
             {
                 IntegrationHelper.ReportDoubleSolrConfigurationAttempt(this.GetType());

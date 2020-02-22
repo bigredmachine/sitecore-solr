@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Sitecore.Abstractions;
 using Sitecore.ContentSearch;
+using Sitecore.ContentSearch.Abstractions.Factories;
 using Sitecore.ContentSearch.Diagnostics;
 using Sitecore.ContentSearch.Linq.Common;
 using Sitecore.ContentSearch.Pipelines.QueryGlobalFilters;
@@ -15,10 +16,12 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
     {
         private readonly IContentSearchConfigurationSettings _contentSearchSettings;
 
-        public SolrSearchContextDoNotSwallowError(SolrSearchIndex solrSearchIndex, SearchSecurityOptions options)
-            : base(solrSearchIndex, options)
+        public SolrSearchContextDoNotSwallowError(SolrSearchIndex index,
+      ILinqToIndexFactory linqToIndexFactory,
+      SearchSecurityOptions options = SearchSecurityOptions.Default)
+            : base(index, linqToIndexFactory, options)
         {
-            _contentSearchSettings = solrSearchIndex.Locator.GetInstance<IContentSearchConfigurationSettings>();
+            _contentSearchSettings = index.Locator.GetInstance<IContentSearchConfigurationSettings>();
         }
 
         IQueryable<TItem> Sitecore.ContentSearch.IProviderSearchContext.GetQueryable<TItem>()

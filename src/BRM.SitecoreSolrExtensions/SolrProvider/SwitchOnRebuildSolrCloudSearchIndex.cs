@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
-using System.Threading;
 using BRM.Indexing.SitecoreSolrExtensions.Configuration;
 using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
-using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.Diagnostics;
+using Sitecore.ContentSearch.Abstractions.Factories;
+using Sitecore.ContentSearch.Linq.Factories;
 using Sitecore.ContentSearch.Maintenance;
-using Sitecore.ContentSearch.Security;
 using Sitecore.ContentSearch.SolrNetExtension;
-using Sitecore.ContentSearch.SolrProvider;
-using Sitecore.ContentSearch.Utilities;
+using Sitecore.ContentSearch.SolrProvider.Abstractions;
+using Sitecore.ContentSearch.SolrProvider.Factories;
 
 namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
 {
@@ -39,32 +37,14 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
                   rebuildalias,
                   activecollection,
                   rebuildcollection,
-                  propertystore)
+                  propertystore,
+                  (ISolrProviderContextFactory)new SolrContextFactoryNoSwallowError((ILinqToIndexFactory)new SolrLinqToIndexFactory((IQueryableFactory)new DefaultQueryableFactory()), doNotSwallowError),
+                  null)
         {
             if (!string.IsNullOrWhiteSpace(doNotSwallowError))
             {
                 bool.TryParse(doNotSwallowError, out _doNotSwallowError);
             }
-        }
-
-        public override IProviderSearchContext CreateSearchContext(SearchSecurityOptions options = SearchSecurityOptions.Default)
-        {
-            if (Group == IndexGroup.Experience)
-            {
-                return new SolrAnalyticsSearchContext(this, options);
-            }
-
-            if (!_doNotSwallowError)
-            {
-                return new SolrSearchContext(this, options);
-            }
-
-            if (_doNotSwallowError && !IsInitialized)
-            {
-                throw new Sitecore.Exceptions.ConfigurationException("Index not yet initialized!");
-            }
-
-            return new SolrSearchContextDoNotSwallowError(this, options);
         }
 
         //Expose internal method through an explict interface
@@ -81,51 +61,6 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
             }
 
             base.Rebuild(resetIndex, optimizeOnComplete);
-        }
-
-        protected override void PerformRebuild(bool resetIndex, bool optimizeOnComplete, IndexingOptions indexingOptions, CancellationToken cancellationToken)
-        {
-            if (!this.ShouldStartIndexing(indexingOptions))
-            {
-                return;
-            }
-
-            using (new RebuildIndexingTimer(PropertyStore))
-            {
-                if (resetIndex)
-                {
-                    Reset(this.RebuildSolrOperations, RebuildCore);
-                }
-
-                using (IProviderUpdateContext coreUpdateContext = this.CreateTemporaryCoreUpdateContext(this.RebuildSolrOperations))
-                {
-                    foreach (IProviderCrawler crawler in Crawlers)
-                    {
-                        crawler.RebuildFromRoot(coreUpdateContext, indexingOptions, cancellationToken);
-                    }
-
-                    coreUpdateContext.Commit();
-                }
-
-                if (optimizeOnComplete)
-                {
-                    //Customisation - sitecore bug fix 235313
-                    if (SolrContentSearchManager.SolrSettings.OptimizeOnRebuildEnabled())
-                    {
-                        CrawlingLog.Log.Debug(string.Format("[Index={0}] Optimizing core [Core: {1}]", Name, RebuildCore), null);
-                        this.RebuildSolrOperations.Optimize();
-                    }
-                }
-            }
-
-            if ((this.IndexingState & IndexingState.Stopped) == IndexingState.Stopped)
-            {
-                CrawlingLog.Log.Debug(string.Format("[Index={0}] Swapping of cores was not done since full rebuild was stopped...", Name), null);
-            }
-            else
-            {
-                SwapAfterRebuild();
-            }
         }
     }
 }

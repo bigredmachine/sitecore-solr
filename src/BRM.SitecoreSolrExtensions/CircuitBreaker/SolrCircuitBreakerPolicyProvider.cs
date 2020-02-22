@@ -1,5 +1,5 @@
 ﻿using BRM.Indexing.Domain;
-using Microsoft.Practices.ServiceLocation;
+using CommonServiceLocator;
 
 namespace BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker
 {
