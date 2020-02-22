@@ -255,10 +255,7 @@
     <Compile Include="Pipeline\InitialiseSolrProvider.cs" />
     <Compile Include="CircuitBreaker\SolrCircuitBreakerPolicyProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolrOperations\CloudConnector.cs" />
     <Compile Include="SolrOperations\ISolrOperations.cs" />
-    <Compile Include="SolrOperations\OperationsFactory.cs" />
-    <Compile Include="SolrOperations\SolrFactory.cs" />
     <Compile Include="SolrOperations\SolrLocator.cs" />
     <Compile Include="SolrOperations\SolrStartup.cs" />
     <Compile Include="SolrProvider\LinqToSolrIndexDoNotSwallowError.cs" />
