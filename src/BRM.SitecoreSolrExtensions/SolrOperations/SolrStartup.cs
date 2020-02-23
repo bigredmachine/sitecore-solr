@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
+using System.Reflection;
 
 namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
 {
@@ -15,7 +16,7 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
         {
             var solrLocator = new SolrLocator<Dictionary<string, object>>();
             var defaultSolrStartupType = typeof(DefaultSolrStartUp);
-            defaultSolrStartupType.GetProperty(DefaultSolrStartUp_Operations_PropertyName)
+            defaultSolrStartupType.GetProperty(DefaultSolrStartUp_Operations_PropertyName, BindingFlags.Instance | BindingFlags.NonPublic)
             .SetValue(this, solrLocator, null);
 
             base.Initialize();

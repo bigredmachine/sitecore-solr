@@ -4,7 +4,7 @@ using BRM.Indexing.Domain;
 using BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker;
 using BRM.Indexing.SitecoreSolrExtensions.Configuration;
 using Polly;
-using Sitecore.ContentSearch.SolrProvider;
+using Sitecore.ContentSearch;
 using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
 using SolrNet.Exceptions;
 
@@ -15,7 +15,7 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
         public SolrLocator() : base()
         {
             //For each index create a circuit breaker, and add to service locator
-            foreach (var index in SolrContentSearchManager.Indexes)
+            foreach (var index in ContentSearchManager.Indexes)
             {
                 var transientHandler = CreateCircuitBreakerForCore(index.Name);
                 this.AddTransientHandler(transientHandler, index.Name);
