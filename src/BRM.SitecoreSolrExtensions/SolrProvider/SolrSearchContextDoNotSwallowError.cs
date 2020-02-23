@@ -16,7 +16,7 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
     {
         private readonly IContentSearchConfigurationSettings _contentSearchSettings;
 
-        public SolrSearchContextDoNotSwallowError(SolrSearchIndex index,
+        public SolrSearchContextDoNotSwallowError(Sitecore.ContentSearch.SolrProvider.SolrSearchIndex index,
       ILinqToIndexFactory linqToIndexFactory,
       SearchSecurityOptions options = SearchSecurityOptions.Default)
             : base(index, linqToIndexFactory, options)

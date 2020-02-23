@@ -261,6 +261,8 @@
     <Compile Include="SolrProvider\LinqToSolrIndexDoNotSwallowError.cs" />
     <Compile Include="SolrProvider\SolrContextFactoryNoSwallowError.cs" />
     <Compile Include="SolrProvider\SolrSearchContextDoNotSwallowError.cs" />
+    <Compile Include="SolrProvider\SolrSearchIndex.cs" />
+    <Compile Include="SolrProvider\SwitchOnRebuildSolrSearchIndex.cs" />
     <Compile Include="SolrProvider\SwitchOnRebuildSolrCloudSearchIndex.cs" />
   </ItemGroup>
   <ItemGroup>

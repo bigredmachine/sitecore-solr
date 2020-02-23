@@ -1,7 +1,6 @@
 ﻿using Sitecore.ContentSearch;
 using Sitecore.ContentSearch.Abstractions.Factories;
 using Sitecore.ContentSearch.Security;
-using Sitecore.ContentSearch.SolrProvider;
 using Sitecore.ContentSearch.SolrProvider.Factories;
 
 namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
@@ -21,7 +20,7 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
             }
         }
 
-        protected override IProviderSearchContext GetSearchContext(SolrSearchIndex searchIndex, SearchSecurityOptions options)
+        protected override IProviderSearchContext GetSearchContext(Sitecore.ContentSearch.SolrProvider.SolrSearchIndex searchIndex, SearchSecurityOptions options)
         {
             if (_doNotSwallowError)
             {

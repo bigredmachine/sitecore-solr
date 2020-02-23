@@ -11,9 +11,9 @@ using Sitecore.ContentSearch.SolrProvider.Factories;
 
 namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
 {
-    public class SwitchOnRebuildSolrCloudSearchIndex : Sitecore.ContentSearch.SolrProvider.SwitchOnRebuildSolrCloudSearchIndex, ISolrOperations
+    public class SwitchOnRebuildSolrSearchIndex : Sitecore.ContentSearch.SolrProvider.SwitchOnRebuildSolrSearchIndex, ISolrOperations
     {
-        public SwitchOnRebuildSolrCloudSearchIndex(string name,
+        public SwitchOnRebuildSolrSearchIndex(string name,
             string mainalias,
             string rebuildalias,
             string activecollection,
@@ -23,7 +23,7 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
         {
         }
 
-        public SwitchOnRebuildSolrCloudSearchIndex(string name,
+        public SwitchOnRebuildSolrSearchIndex(string name,
             string mainalias,
             string rebuildalias,
             string activecollection,
@@ -31,8 +31,6 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
             string doNotSwallowError,
             IIndexPropertyStore propertystore)
             : base(name,
-                  mainalias,
-                  rebuildalias,
                   activecollection,
                   rebuildcollection,
                   propertystore,
