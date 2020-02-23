@@ -49,7 +49,7 @@
         {
             if (Sitecore.Configuration.Settings.InstanceName != Settings.IndexingInstance)
             {
-                throw new ConfigurationException("Failed to rebuild index, please use indexing instance!");
+                throw new ConfigurationErrorsException("Failed to rebuild index, please use indexing instance!");
             }
 
             base.Rebuild(resetIndex, optimizeOnComplete);
