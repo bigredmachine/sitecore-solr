@@ -27,7 +27,7 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
                 return new SolrSearchContextDoNotSwallowError(searchIndex, _linqToSolrFactory, options);
             }
 
-            return base.CreateSearchContext(searchIndex, options);
+            return base.GetSearchContext(searchIndex, options);
         }
     }
 }

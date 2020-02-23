@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+@using Sitecore.ContentSearch;
+@using Sitecore.ContentSearch.SearchTypes;
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    @DateTime.Now
+
+    <ul>
+        @{
+            ISearchIndex index = ContentSearchManager.GetIndex("brm_domainindex");
+            using (IProviderSearchContext context = index.CreateSearchContext())
+            {
+                var results = context.GetQueryable<SearchResultItem>();
+                foreach (var result in results)
+                {
+                    @:<li>Path=@result.Path</li>
+                }
+            }
+        }
+    </ul>
+</body>
+</html>
