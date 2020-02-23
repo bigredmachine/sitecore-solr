@@ -12,6 +12,5 @@ namespace BRM.Indexing.SitecoreSolrExtensions.Configuration
 
         public static int CircuitBreakerConsecutiveExceptionsBeforeBreaking = Sitecore.Configuration.Settings.GetIntSetting("ContentSearch.Solr.CircuitBreaker.ConsecutiveExceptionsBeforeBreaking", 2);
         public static int CircuitBreakerDurationInMins = Sitecore.Configuration.Settings.GetIntSetting("ContentSearch.Solr.CircuitBreaker.DurationInMins", 1);
-        public static int ConnectionTimeoutForQueries = Sitecore.Configuration.Settings.GetIntSetting("ContentSearch.Solr.ConnectionTimeoutForQueries", 5000);
     }
 }
