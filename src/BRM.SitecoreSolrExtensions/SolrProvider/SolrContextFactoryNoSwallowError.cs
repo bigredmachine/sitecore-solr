@@ -1,10 +1,10 @@
-﻿using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.Abstractions.Factories;
-using Sitecore.ContentSearch.Security;
-using Sitecore.ContentSearch.SolrProvider.Factories;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
 {
+    using Sitecore.ContentSearch;
+    using Sitecore.ContentSearch.Abstractions.Factories;
+    using Sitecore.ContentSearch.Security;
+    using Sitecore.ContentSearch.SolrProvider.Factories;
+
     public class SolrContextFactoryNoSwallowError : SolrContextFactory
     {
         private readonly ILinqToIndexFactory _linqToSolrFactory;

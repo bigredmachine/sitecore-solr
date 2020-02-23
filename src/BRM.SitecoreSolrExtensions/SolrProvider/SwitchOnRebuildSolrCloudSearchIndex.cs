@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
-using BRM.Indexing.SitecoreSolrExtensions.Configuration;
-using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
-using Sitecore.ContentSearch.Abstractions.Factories;
-using Sitecore.ContentSearch.Linq.Factories;
-using Sitecore.ContentSearch.Maintenance;
-using Sitecore.ContentSearch.SolrNetExtension;
-using Sitecore.ContentSearch.SolrProvider.Abstractions;
-using Sitecore.ContentSearch.SolrProvider.Factories;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
 {
+    using System.Collections.Generic;
+    using System.Configuration;
+    using BRM.Indexing.SitecoreSolrExtensions.Configuration;
+    using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
+    using Sitecore.ContentSearch.Abstractions.Factories;
+    using Sitecore.ContentSearch.Linq.Factories;
+    using Sitecore.ContentSearch.Maintenance;
+    using Sitecore.ContentSearch.SolrNetExtension;
+    using Sitecore.ContentSearch.SolrProvider.Abstractions;
+    using Sitecore.ContentSearch.SolrProvider.Factories;
+
     public class SwitchOnRebuildSolrCloudSearchIndex : Sitecore.ContentSearch.SolrProvider.SwitchOnRebuildSolrCloudSearchIndex, ISolrOperations
     {
         public SwitchOnRebuildSolrCloudSearchIndex(string name,

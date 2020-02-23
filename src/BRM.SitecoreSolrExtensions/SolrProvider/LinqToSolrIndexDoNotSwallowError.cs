@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web.Mvc;
-using BRM.Indexing.Domain;
-using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
-using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.Linq;
-using Sitecore.ContentSearch.Linq.Common;
-using Sitecore.ContentSearch.Linq.Factories;
-using Sitecore.ContentSearch.Linq.Methods;
-using Sitecore.ContentSearch.Linq.Parsing;
-using Sitecore.ContentSearch.Linq.Solr;
-using Sitecore.ContentSearch.SolrProvider;
-using Sitecore.ContentSearch.SolrProvider.Logging;
-using Sitecore.ContentSearch.Utilities;
-using SolrNet;
-using SolrNet.Commands.Parameters;
-using SolrNet.Exceptions;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using BRM.Indexing.Domain;
+    using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
+    using Sitecore.ContentSearch;
+    using Sitecore.ContentSearch.Linq;
+    using Sitecore.ContentSearch.Linq.Common;
+    using Sitecore.ContentSearch.Linq.Factories;
+    using Sitecore.ContentSearch.Linq.Methods;
+    using Sitecore.ContentSearch.Linq.Parsing;
+    using Sitecore.ContentSearch.Linq.Solr;
+    using Sitecore.ContentSearch.SolrProvider;
+    using Sitecore.ContentSearch.SolrProvider.Logging;
+    using Sitecore.ContentSearch.Utilities;
+    using SolrNet;
+    using SolrNet.Commands.Parameters;
+    using SolrNet.Exceptions;
+
     //Reflection required to work around internal/private references, not ideal
     //all to avoid returning back empty lists
     //and implement circuit breaker pattern
@@ -47,7 +47,6 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
         private readonly LogSolrQueryExceptionDelegate _logQueryExceptionDelegate;
         private readonly LogSolrQueryDelegate _logSolrQueryDelegate;
 
-        //private readonly IContentSearchConfigurationSettings _contentSearchSettings;
         private readonly SolrSearchContextDoNotSwallowError _context;
         private readonly ITransientHandler _transientHandler;
         private readonly SolrLoggingSerializer _solrLoggingSerializer;
@@ -68,7 +67,6 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
                 (FieldNameTranslator)context.Index.FieldNameTranslator))
         {
             _context = context;
-            //_contentSearchSettings = context.Index.Locator.GetInstance<IContentSearchConfigurationSettings>();
             _solrLoggingSerializer = new SolrLoggingSerializer();
 
             var solrCircuitBreakerPolicyProvider = DependencyResolver.Current.GetService<ISolrCircuitBreakerPolicyProvider>();
@@ -166,9 +164,9 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
                 object instance = ReflectionUtility.CreateInstance(type, (object)_context, (object)solrQueryResults, (object)compositeQuery);
                 return (TResult)methodInfo.Invoke((object)this, new object[3]
                 {
-          (object) compositeQuery,
-          instance,
-          (object) solrQueryResults
+                    (object) compositeQuery,
+                    instance,
+                    (object) solrQueryResults
                 });
             }
 
@@ -196,11 +194,6 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
                 _handleUnionDelegate(unionMethod) :
                 this.ExecuteQuery(compositeQuery, _buildQueryOptionsDelegate(compositeQuery));
         }
-
-        //private QueryOptions BuildQueryOptions(SolrCompositeQuery compositeQuery)
-        //{
-        //    return this.SolrQueryOptionsBuilder.Build(compositeQuery, (IProviderSearchContext)_context);
-        //}
 
         private SolrQueryResults<Dictionary<string, object>> ExecuteQuery(
             SolrCompositeQuery compositeQuery,
@@ -230,18 +223,5 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
                 }
             }
         }
-
-        //private void SetContextCultureFromExecutionContext(SolrCompositeQuery compositeQuery)
-        //{
-        //    this.UpdateFieldNameTranslatorCultureContext((IEnumerable<CultureExecutionContext>)compositeQuery.ExecutionContexts.OfType<CultureExecutionContext>().ToList<CultureExecutionContext>());
-        //}
-
-        //private void UpdateFieldNameTranslatorCultureContext(
-        //  IEnumerable<CultureExecutionContext> cultureExecutionContext)
-        //{
-        //    if (cultureExecutionContext == null)
-        //        return;
-        //    this.FieldNameTranslator.Accept((IExecutionContext)cultureExecutionContext.FirstOrDefault<CultureExecutionContext>((Func<CultureExecutionContext, bool>)(executionContext => executionContext.PredicateType != CulturePredicateType.Not)));
-        //}
     }
 }

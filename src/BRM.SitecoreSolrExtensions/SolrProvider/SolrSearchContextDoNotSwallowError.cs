@@ -1,24 +1,24 @@
-﻿using System.Linq;
-using Sitecore.Abstractions;
-using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.Abstractions.Factories;
-using Sitecore.ContentSearch.Diagnostics;
-using Sitecore.ContentSearch.Linq.Common;
-using Sitecore.ContentSearch.Pipelines.QueryGlobalFilters;
-using Sitecore.ContentSearch.SearchTypes;
-using Sitecore.ContentSearch.Security;
-using Sitecore.ContentSearch.SolrProvider;
-using Sitecore.ContentSearch.Utilities;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.SolrProvider
 {
+    using System.Linq;
+    using Sitecore.Abstractions;
+    using Sitecore.ContentSearch;
+    using Sitecore.ContentSearch.Abstractions.Factories;
+    using Sitecore.ContentSearch.Diagnostics;
+    using Sitecore.ContentSearch.Linq.Common;
+    using Sitecore.ContentSearch.Pipelines.QueryGlobalFilters;
+    using Sitecore.ContentSearch.SearchTypes;
+    using Sitecore.ContentSearch.Security;
+    using Sitecore.ContentSearch.SolrProvider;
+    using Sitecore.ContentSearch.Utilities;
+
     public class SolrSearchContextDoNotSwallowError : SolrSearchContext, IProviderSearchContext
     {
         private readonly IContentSearchConfigurationSettings _contentSearchSettings;
 
         public SolrSearchContextDoNotSwallowError(Sitecore.ContentSearch.SolrProvider.SolrSearchIndex index,
-      ILinqToIndexFactory linqToIndexFactory,
-      SearchSecurityOptions options = SearchSecurityOptions.Default)
+            ILinqToIndexFactory linqToIndexFactory,
+            SearchSecurityOptions options = SearchSecurityOptions.Default)
             : base(index, linqToIndexFactory, options)
         {
             _contentSearchSettings = index.Locator.GetInstance<IContentSearchConfigurationSettings>();

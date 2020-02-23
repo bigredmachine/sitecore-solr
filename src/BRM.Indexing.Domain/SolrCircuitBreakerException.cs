@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace BRM.Indexing.Domain
+﻿namespace BRM.Indexing.Domain
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class SolrCircuitBreakerException : Exception
     {

@@ -1,9 +1,9 @@
-﻿using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
-using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
-using Sitecore.Pipelines;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.Pipeline
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.Pipeline
 {
+    using BRM.Indexing.SitecoreSolrExtensions.SolrOperations;
+    using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
+    using Sitecore.Pipelines;
+
     public class InitialiseSolrProvider
     {
         public void Process(PipelineArgs args)

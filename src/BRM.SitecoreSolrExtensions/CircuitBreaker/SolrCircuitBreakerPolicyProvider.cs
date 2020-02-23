@@ -1,8 +1,8 @@
-﻿using BRM.Indexing.Domain;
-using CommonServiceLocator;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker
 {
+    using BRM.Indexing.Domain;
+    using CommonServiceLocator;
+
     //This needs to be registered in your DI container
     public class SolrCircuitBreakerPolicyProvider : ISolrCircuitBreakerPolicyProvider
     {

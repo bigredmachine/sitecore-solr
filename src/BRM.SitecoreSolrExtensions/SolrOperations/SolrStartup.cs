@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
-using System.Reflection;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
 {
+    using System.Collections.Generic;
+    using System.Reflection;
+    using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
+
     public class SolrStartup : DefaultSolrStartUp
     {
         private const string DefaultSolrStartUp_Operations_PropertyName = "Operations";

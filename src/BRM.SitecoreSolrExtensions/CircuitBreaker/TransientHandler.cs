@@ -1,9 +1,9 @@
-﻿using System;
-using BRM.Indexing.Domain;
-using Polly.CircuitBreaker;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker
 {
+    using System;
+    using BRM.Indexing.Domain;
+    using Polly.CircuitBreaker;
+
     public class TransientHandler : ITransientHandler
     {
         private readonly CircuitBreakerPolicy _circuitBreakerPolicy;

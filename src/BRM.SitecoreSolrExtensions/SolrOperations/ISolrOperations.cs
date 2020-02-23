@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Sitecore.ContentSearch.SolrNetExtension;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
 {
+    using System.Collections.Generic;
+    using Sitecore.ContentSearch.SolrNetExtension;
+
     //Interface to work around internal property
     public interface ISolrOperations
     {

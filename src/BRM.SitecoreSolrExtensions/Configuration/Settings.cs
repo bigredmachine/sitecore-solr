@@ -1,7 +1,7 @@
-﻿using Sitecore;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.Configuration
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.Configuration
 {
+    using Sitecore;
+
     public class Settings
     {
         public static string IndexingInstance = StringUtil.GetString(new string[]

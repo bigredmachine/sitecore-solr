@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using BRM.Indexing.Domain;
-using BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker;
-using BRM.Indexing.SitecoreSolrExtensions.Configuration;
-using Polly;
-using Sitecore.ContentSearch;
-using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
-using SolrNet.Exceptions;
-
-namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
+﻿namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
 {
+    using System;
+    using System.Collections.Generic;
+    using BRM.Indexing.Domain;
+    using BRM.Indexing.SitecoreSolrExtensions.CircuitBreaker;
+    using BRM.Indexing.SitecoreSolrExtensions.Configuration;
+    using Polly;
+    using Sitecore.ContentSearch;
+    using Sitecore.ContentSearch.SolrProvider.SolrNetIntegration;
+    using SolrNet.Exceptions;
+
     public class SolrLocator<T> : DefaultSolrLocator<T>
     {
         public SolrLocator() : base()
