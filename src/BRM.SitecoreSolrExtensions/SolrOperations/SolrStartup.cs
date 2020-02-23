@@ -14,6 +14,8 @@ namespace BRM.Indexing.SitecoreSolrExtensions.SolrOperations
 
         public override void Initialize()
         {
+            //Override DefaultSolrLocator with our SolrLocator, before gets added to ServiceLocator
+            //Our SolrLocator adds tranisent fault handlers per index
             var solrLocator = new SolrLocator<Dictionary<string, object>>();
             var defaultSolrStartupType = typeof(DefaultSolrStartUp);
             defaultSolrStartupType.GetProperty(DefaultSolrStartUp_Operations_PropertyName, BindingFlags.Instance | BindingFlags.NonPublic)

@@ -264,12 +264,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppConfig\Include\Indexing\BRM.Indexing.config" />
+    <Content Include="App_Config\Include\Indexing\BRM.Indexing.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="AppConfig\Include\Indexing\BRM.DomainIndex.config" />
-    <Content Include="AppConfig\Include\Indexing\Sitecore.ContentSearch.Solr.ConnectionSettings.config" />
+    <Content Include="App_Config\Include\Indexing\BRM.DomainIndex.config" />
+    <Content Include="App_Config\Include\Indexing\Sitecore.ContentSearch.Solr.ConnectionSettings.config" />
     <None Include="packages.config" />
     <Content Include="QueryDomain.cshtml" />
     <Content Include="QueryWeb.cshtml" />
